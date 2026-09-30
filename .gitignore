@@ -5,3 +5,4 @@ pinterest/
 *.log
 .DS_Store
 .wrangler/
+.wrangler/
