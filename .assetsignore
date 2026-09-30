@@ -1,0 +1,10 @@
+# Cloudflare 单文件上限 25MiB：以下大文件不上传到 Cloudflare，
+# 页面里改用 GitHub raw 直链（raw.githubusercontent.com，单文件上限 100MB）
+.assetsignore
+wrangler.jsonc
+assets/ppt/05-zhiyuhuiyang.pptx
+assets/ppt/06-zhiyouxia.pptx
+assets/ppt/11-zhihuixing.pptx
+assets/video/07-koubo-1-foundation.mp4
+assets/video/07-koubo-2-eye-oil-01.mp4
+assets/video/07-koubo-3-eye-oil-02.mp4

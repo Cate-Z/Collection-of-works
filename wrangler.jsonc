@@ -1,0 +1,11 @@
+{
+  // Cloudflare Workers 静态站配置：仓库根目录即站点根目录，无构建步骤
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "collection-of-works",
+  "compatibility_date": "2026-09-30",
+  "assets": {
+    "directory": ".",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}
