@@ -1,7 +1,13 @@
-# Cloudflare 单文件上限 25MiB：以下大文件不上传到 Cloudflare，
-# 页面里改用 GitHub raw 直链（raw.githubusercontent.com，单文件上限 100MB）
+# Cloudflare 单文件上限 25MiB：以下内容不上传到 Cloudflare
+# 1) 非站点内容（CI 克隆后 wrangler 会把 assets 目录下所有文件当资源）
 .assetsignore
 wrangler.jsonc
+.git
+.gitignore
+.workbuddy
+_local-backup
+pinterest
+# 2) 超过 25MiB 的大文件，页面里改用 GitHub raw 直链
 assets/ppt/05-zhiyuhuiyang.pptx
 assets/ppt/06-zhiyouxia.pptx
 assets/ppt/11-zhihuixing.pptx
