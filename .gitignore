@@ -4,3 +4,4 @@ assets/about/_old/
 pinterest/
 *.log
 .DS_Store
+.wrangler/
