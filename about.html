@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About 周颖琦 · 生活 — Zhou Yingqi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0a0a0a;
+  --fg:#f2f2ef;
+  --dim:rgba(242,242,239,.42);
+  --line:rgba(242,242,239,.14);
+  --grass:#8cc63f;
+  --pad:clamp(18px,3.2vw,44px);
+  --sans:'Inter Tight','Helvetica Neue',Helvetica,'PingFang SC','Microsoft YaHei',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  padding-top:calc(clamp(18px,3vh,30px)*2 + 15px);
+  background:var(--bg);color:var(--fg);
+  font-family:var(--sans);font-weight:300;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* header */
+.top{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(10,10,10,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(18px,3vh,30px) var(--pad);
+  border-bottom:1px solid var(--line);
+}
+.back{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
+  transition:color .25s var(--ease);
+}
+.back:hover{color:var(--grass)}
+.idx{font-size:11px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+
+/* head block */
+.head{padding:clamp(40px,7vh,84px) var(--pad) clamp(26px,4vh,44px)}
+.head h1{
+  font-size:clamp(2rem,6vw,4.4rem);font-weight:400;letter-spacing:.02em;line-height:1.05;
+}
+.head .meta{
+  margin-top:16px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+  display:flex;flex-wrap:wrap;gap:8px 22px;
+}
+.head .meta b{color:var(--grass);font-weight:400}
+.head p{
+  margin-top:22px;max-width:600px;font-size:13px;line-height:1.9;color:rgba(242,242,239,.72);
+}
+.head p .hl{color:var(--grass)}
+
+/* section title */
+.sec-title{
+  padding:clamp(30px,5vh,56px) var(--pad) clamp(14px,2vh,22px);
+  display:flex;align-items:baseline;gap:14px;
+  border-top:1px solid var(--line);
+}
+.sec-title .no{font-size:11px;letter-spacing:.18em;color:var(--grass)}
+.sec-title h2{font-size:clamp(1.15rem,2.6vw,1.7rem);font-weight:400;letter-spacing:.04em}
+.sec-title em{font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+/* photo grids */
+.shots{
+  display:grid;gap:clamp(10px,1.6vw,22px);
+  padding:clamp(10px,1.6vh,18px) var(--pad) clamp(24px,4vh,40px);
+}
+.shots.life{grid-template-columns:repeat(3,1fr)}
+.shots.sport{grid-template-columns:repeat(3,1fr)}
+.shot{border:1px solid var(--line);overflow:hidden;background:#101010}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.shot:hover img{transform:scale(1.02)}
+.shot figcaption{
+  padding:10px 12px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dim);border-top:1px solid var(--line);
+}
+.shots.life .shot img{aspect-ratio:3/4}
+.shots.sport .shot img{aspect-ratio:4/3}
+
+@media (max-width:900px){
+  .shots.life,.shots.sport{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:600px){
+  .shots.life,.shots.sport{grid-template-columns:repeat(2,1fr)}
+}
+
+.foot-pad{padding:clamp(40px,8vh,90px) 0}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="back" href="index.html" onclick="if(history.length>1){history.back();return false;}">← Back to Works</a>
+  <span class="idx">About · Zhou Yingqi</span>
+</header>
+
+<section class="head">
+  <h1>工作之外，<br />生活也在进行。</h1>
+  <div class="meta">
+    <span><b>Zhou Yingqi 周颖琦</b></span>
+    <span>Guangzhou, China</span>
+    <span>Life &amp; Snowboarding</span>
+  </div>
+  <p>编写代码、剪辑视频、撰写文章发布博客、制作 PPT 之外，我也是一个<span class="hl">热爱生活、爱拍照</span>的人。我有许多给自己充电的方式，也热衷于记录生活里那些不刻意的小瞬间。对我来说，工作和生活都需要耐心、专注，和摔倒后再来一次的勇气。</p>
+</section>
+
+<div class="sec-title">
+  <span class="no">01</span>
+  <h2>生活日常</h2>
+  <em>Daily Life</em>
+</div>
+<section class="shots life">
+  <figure class="shot"><img src="assets/about/life-1.jpg" alt="生活照 1" loading="lazy" /><figcaption>Fridge &amp; Soda · 冰箱边的小快乐</figcaption></figure>
+  <figure class="shot"><img src="assets/about/life-2.jpg" alt="生活照 2" loading="lazy" /><figcaption>Little Moments · 日常记录</figcaption></figure>
+  <figure class="shot"><img src="assets/about/life-3.jpg" alt="生活照 3" loading="lazy" /><figcaption>Cheers · 干杯时刻</figcaption></figure>
+</section>
+
+<div class="sec-title">
+  <span class="no">02</span>
+  <h2>运动 · 滑雪</h2>
+  <em>Snowboarding</em>
+</div>
+<section class="shots sport">
+  <figure class="shot"><img src="assets/about/sport-1.jpg" alt="滑雪照 1" loading="lazy" /><figcaption>On the Slopes · 雪道上的我</figcaption></figure>
+  <figure class="shot"><img src="assets/about/sport-2.jpg" alt="滑雪照 2" loading="lazy" /><figcaption>Arctic Queen · 装备照</figcaption></figure>
+  <figure class="shot"><img src="assets/about/sport-3.jpg" alt="滑雪照 3" loading="lazy" /><figcaption>Ready to Ride · 准备出发</figcaption></figure>
+  <figure class="shot"><img src="assets/about/sport-4.jpg" alt="滑雪照 4" loading="lazy" /><figcaption>Strap In · 固定器检查</figcaption></figure>
+  <figure class="shot"><img src="assets/about/sport-5.jpg" alt="滑雪照 5" loading="lazy" /><figcaption>Hello Snow · 雪地打招呼</figcaption></figure>
+  <figure class="shot"><img src="assets/about/sport-6.jpg" alt="滑雪照 6" loading="lazy" /><figcaption>Carving · 换刃瞬间</figcaption></figure>
+</section>
+
+<div class="foot-pad"></div>
+
+<script>
+/* 返回栏带回当前分类：从哪个筛选栏进来，就退回哪个筛选栏 */
+(function(){
+  var f = new URLSearchParams(location.search).get('f');
+  var a = document.querySelector('.back');
+  if(f && a) a.setAttribute('href', 'index.html?f=' + encodeURIComponent(f));
+})();
+</script>
+</body>
+</html>

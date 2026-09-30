@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>智能伴侣 — Zhou Yingqi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0a0a0a;
+  --fg:#f2f2ef;
+  --dim:rgba(242,242,239,.42);
+  --line:rgba(242,242,239,.14);
+  --grass:#8cc63f;
+  --pad:clamp(18px,3.2vw,44px);
+  --sans:'Inter Tight','Helvetica Neue',Helvetica,'PingFang SC','Microsoft YaHei',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  padding-top:calc(clamp(18px,3vh,30px)*2 + 15px);
+  background:var(--bg);color:var(--fg);
+  font-family:var(--sans);font-weight:300;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+.top{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(10,10,10,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(18px,3vh,30px) var(--pad);
+  border-bottom:1px solid var(--line);
+}
+.back{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);transition:color .25s var(--ease)}
+.back:hover{color:var(--grass)}
+.idx{font-size:11px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+
+.head{padding:clamp(40px,7vh,84px) var(--pad) clamp(26px,4vh,44px)}
+.head h1{font-size:clamp(2rem,6vw,4.4rem);font-weight:400;letter-spacing:.02em;line-height:1.05}
+.head .meta{margin-top:16px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);display:flex;flex-wrap:wrap;gap:8px 22px}
+.head .meta b{color:var(--grass);font-weight:400}
+.head p{margin-top:22px;max-width:640px;font-size:13px;line-height:1.9;color:rgba(242,242,239,.72)}
+.head p .hl{color:var(--grass)}
+
+.sec-title{
+  padding:clamp(30px,5vh,56px) var(--pad) clamp(14px,2vh,22px);
+  display:flex;align-items:baseline;gap:14px;border-top:1px solid var(--line);
+}
+.sec-title .no{font-size:11px;letter-spacing:.18em;color:var(--grass)}
+.sec-title h2{font-size:clamp(1.15rem,2.6vw,1.7rem);font-weight:400;letter-spacing:.04em}
+.sec-title em{font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+.prose{padding:0 var(--pad) clamp(20px,3vh,32px);max-width:780px}
+.prose p{font-size:13px;line-height:1.95;color:rgba(242,242,239,.72)}
+.prose p + p{margin-top:12px}
+.prose .hl{color:var(--grass)}
+
+.feats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,22px);
+  padding:clamp(10px,1.6vh,18px) var(--pad) clamp(24px,4vh,40px);
+}
+.feat{border:1px solid var(--line);padding:20px 18px;background:#101010}
+.feat b{display:block;font-weight:400;font-size:13.5px;letter-spacing:.06em;color:var(--fg)}
+.feat b::before{content:"+ ";color:var(--grass)}
+.feat span{display:block;margin-top:9px;font-size:11.5px;line-height:1.75;color:var(--dim)}
+
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.6vw,22px);
+  padding:clamp(10px,1.6vh,18px) var(--pad) clamp(24px,4vh,40px);
+}
+.stat{border:1px solid var(--line);padding:24px 18px;background:#101010}
+.stat b{display:block;font-weight:400;font-size:clamp(1.7rem,3.6vw,2.7rem);line-height:1;color:var(--grass)}
+.stat span{display:block;margin-top:10px;font-size:11.5px;line-height:1.7;color:var(--dim)}
+
+.stack-rows{padding:0 var(--pad) clamp(24px,4vh,40px)}
+.srow{
+  display:grid;grid-template-columns:150px 240px 1fr;gap:14px;align-items:baseline;
+  padding:13px 0;border-bottom:1px solid var(--line);
+}
+.srow:last-child{border-bottom:none}
+.srow .k{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.srow .v{font-size:13px;letter-spacing:.04em;color:var(--grass)}
+.srow .d{font-size:12px;line-height:1.7;color:rgba(242,242,239,.6)}
+
+.shots{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.6vw,22px);
+  padding:clamp(10px,1.6vh,18px) var(--pad) clamp(40px,7vh,80px);
+}
+.shot{border:1px solid var(--line);overflow:hidden;background:#101010}
+.shot img{width:100%;height:auto;transition:transform .6s var(--ease)}
+.shot:hover img{transform:scale(1.02)}
+.shot figcaption{padding:10px 12px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);border-top:1px solid var(--line)}
+
+@media (max-width:1000px){
+  .feats{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .shots{grid-template-columns:repeat(3,1fr)}
+  .srow{grid-template-columns:120px 190px 1fr}
+}
+@media (max-width:600px){
+  .feats{grid-template-columns:1fr}
+  .shots{grid-template-columns:repeat(2,1fr)}
+  .srow{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="back" href="index.html" onclick="if(history.length>1){history.back();return false;}">← Back / 返回</a>
+  <span class="idx">Project · 03</span>
+</header>
+
+<section class="head">
+  <h1>智能伴侣</h1>
+  <div class="meta">
+    <span><b>Software · AI Companion</b></span><span>DeepSeek · 适老化设计 · 2025</span><span>老年人智能伴侣系统</span>
+  </div>
+  <p>面向老年人群体的 <span class="hl">大模型智能伴侣系统</span>：以健康、生活、家庭、娱乐、智慧为核心场景，把健康守护、用药提醒、紧急求助、出行陪伴、社群互动与情感陪伴放进同一个应用，全程 <span class="hl">适老化交互设计</span>——大按钮、大字号、语音优先，让智能服务真正陪伴老人，而不是给老人增加学习成本。</p>
+</section>
+
+<div class="sec-title">
+  <span class="no">01</span>
+  <h2>产品概览</h2>
+  <em>Product Overview</em>
+</div>
+<section class="shots">
+  <figure class="shot"><img src="assets/work/work-03-1.png" alt="智能伴侣 — 首页" loading="lazy" /><figcaption>首页 · 健康 / SOS / 出行</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-2.png" alt="智能伴侣 — 实时新闻" loading="lazy" /><figcaption>实时新闻</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-3.png" alt="智能伴侣 — 地图出行" loading="lazy" /><figcaption>出行 · 地图导航</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-4.png" alt="智能伴侣 — 紧急求助" loading="lazy" /><figcaption>紧急求助 · SOS / 110 / 120</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-5.png" alt="智能伴侣 — 提醒模式" loading="lazy" /><figcaption>提醒模式设置</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-6.png" alt="智能伴侣 — 添加用药提醒" loading="lazy" /><figcaption>添加用药提醒 · 语音识别</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-7.png" alt="智能伴侣 — 用药提醒列表" loading="lazy" /><figcaption>用药提醒列表</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-8.png" alt="智能伴侣 — 健康报告" loading="lazy" /><figcaption>健康报告 · AI 建议</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-9.png" alt="智能伴侣 — 朋友圈" loading="lazy" /><figcaption>朋友圈</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-10.png" alt="智能伴侣 — 社群发现" loading="lazy" /><figcaption>社群 · 发现</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-11.png" alt="智能伴侣 — 群详情" loading="lazy" /><figcaption>社群 · 群详情</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-12.png" alt="智能伴侣 — 群聊" loading="lazy" /><figcaption>群聊 · AI 防诈骗提醒</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-13.png" alt="智能伴侣 — 日历黄历" loading="lazy" /><figcaption>日历 · 黄历</figcaption></figure>
+  <figure class="shot"><img src="assets/work/work-03-14.png" alt="智能伴侣 — 我的" loading="lazy" /><figcaption>我的 · 家人绑定</figcaption></figure>
+</section>
+
+<div class="sec-title">
+  <span class="no">02</span>
+  <h2>要解决的问题</h2>
+  <em>Problem &amp; Insight</em>
+</div>
+<section class="prose">
+  <p>老年人面对智能设备时，真正的障碍不是功能不够，而是<span class="hl">入口太深、字太小、操作太绕</span>：一次用药提醒要翻五六层菜单，一句求助要在通讯录里找号码；子女又无法随时掌握父母的身体与位置状况，健康数据散落在各个设备里，出问题往往是事后才知道。</p>
+  <p>智能伴侣把高频刚需前置到首页：<span class="hl">健康、SOS、出行</span> 三大入口一屏直达；把"记住吃药"这类最容易被忽略的事交给语音录入 + 定时提醒；把独居老人的安全兜底交给一键求助与家人绑定，让关怀从"事后补救"变成"日常在场"。</p>
+</section>
+
+<div class="sec-title">
+  <span class="no">03</span>
+  <h2>核心功能</h2>
+  <em>Key Features</em>
+</div>
+<section class="feats">
+  <div class="feat"><b>健康守护</b><span>首页直达健康入口，汇总体征数据自动生成健康报告，并给出 AI 建议，异常指标第一时间提醒</span></div>
+  <div class="feat"><b>用药提醒</b><span>语音识别说出药名与剂量即可创建提醒，支持提醒模式设置与提醒列表管理，告别繁琐表单</span></div>
+  <div class="feat"><b>紧急求助</b><span>SOS / 110 / 120 一键直呼，大按钮设计，跌倒或突发状况下无需解锁翻找</span></div>
+  <div class="feat"><b>出行陪伴</b><span>地图导航与出行辅助，结合实时位置让老人出门有人"带路"，家人更放心</span></div>
+  <div class="feat"><b>信息获取</b><span>实时新闻与日历黄历，用老人熟悉的信息节奏呈现每日内容，降低信息焦虑</span></div>
+  <div class="feat"><b>社群互动</b><span>朋友圈、社群发现与群聊，帮助老人重建社交连接，缓解独居孤独</span></div>
+  <div class="feat"><b>AI 防诈骗提醒</b><span>群聊内嵌大模型风险识别，对可疑话术与链接实时提示，守住老人的"钱袋子"</span></div>
+  <div class="feat"><b>家人绑定</b><span>个人中心支持家人绑定，子女可远程关注健康与提醒状态，形成家庭关怀闭环</span></div>
+  <div class="feat"><b>情感陪伴</b><span>大模型驱动的主动对话与陪伴式交互，老人说一句就能得到回应，而不是面对冷冰冰的菜单</span></div>
+</section>
+
+<div class="sec-title">
+  <span class="no">04</span>
+  <h2>技术与设计要点</h2>
+  <em>Design &amp; Stack</em>
+</div>
+<section class="stack-rows">
+  <div class="srow"><span class="k">大模型能力</span><span class="v">DeepSeek 对话与生成</span><span class="d">驱动陪伴式对话、健康建议生成与群聊风险识别</span></div>
+  <div class="srow"><span class="k">语音交互</span><span class="v">语音识别（ASR）</span><span class="d">用药提醒等关键流程支持"说一句就建好"，减少打字负担</span></div>
+  <div class="srow"><span class="k">适老化设计</span><span class="v">大字号 / 高对比 / 大按钮</span><span class="d">关键操作一屏可达，SOS 与用药入口置顶，避免多层级跳转</span></div>
+  <div class="srow"><span class="k">地图与定位</span><span class="v">LBS 导航服务</span><span class="d">出行陪伴与位置共享，支撑家人远程关怀</span></div>
+  <div class="srow"><span class="k">端形态</span><span class="v">移动端应用（HarmonyOS）</span><span class="d">按移动端规范完成适配与交互设计</span></div>
+</section>
+
+<div class="sec-title">
+  <span class="no">05</span>
+  <h2>落地成果</h2>
+  <em>Results</em>
+</div>
+<section class="stats">
+  <div class="stat"><b>14</b><span>个核心页面完成设计与实现</span></div>
+  <div class="stat"><b>5</b><span>大场景闭环：健康 / 生活 / 家庭 / 娱乐 / 智慧</span></div>
+  <div class="stat"><b>3</b><span>级安全兜底：SOS / 110 / 120 一键可达</span></div>
+  <div class="stat"><b>1</b><span>条完整链路：监测 → 提醒 → 求助 → 陪伴 → 社交</span></div>
+</section>
+<section class="feats">
+  <div class="feat"><b>完整产品方案落地</b><span>从场景梳理、信息架构到高保真界面与交互流程，交付可演示的完整产品原型</span></div>
+  <div class="feat"><b>健康数据可视化</b><span>健康报告自动生成并附带 AI 建议，把零散数据变成老人看得懂的结论</span></div>
+  <div class="feat"><b>主动式安全能力</b><span>AI 防诈骗提醒进入日常聊天场景，风险提示前置，而不是事后追责</span></div>
+  <div class="feat"><b>家庭关怀闭环</b><span>家人绑定打通老人端与子女端，让远程关怀有具体的抓手</span></div>
+</section>
+
+<script>
+/* 返回栏带回当前分类：从哪个筛选栏进来，就退回哪个筛选栏 */
+(function(){
+  var f = new URLSearchParams(location.search).get('f');
+  var a = document.querySelector('.back');
+  if(f && a) a.setAttribute('href', 'index.html?f=' + encodeURIComponent(f));
+})();
+</script>
+</body>
+</html>
